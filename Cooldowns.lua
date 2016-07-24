@@ -1,13 +1,18 @@
 local _, sakaras = ...
-local Misc = sakaras.FilgerSettings
+local Misc = sakaras.Misc
+if IsAddOnLoaded("OmniCC") or IsAddOnLoaded("ncCooldown") or IsAddOnLoaded("tullaCC") or IsAddOnLoaded("ShestakUI") then return end
 ----------------------------------------------------------------------------------------
---  Based on OmniCC
+--	Based on tullaCC
 ----------------------------------------------------------------------------------------
 
 Round = function(number, decimals)
 	if not decimals then decimals = 0 end
 	return (("%%.%df"):format(decimals)):format(number)
 end
+
+local format = string.format
+local floor = math.floor
+local min = math.min
 
 local function GetFormattedTime(s)
 	local day, hour, minute = 86400, 3600, 60
@@ -43,7 +48,7 @@ local function Timer_OnSizeChanged(self, width, height)
 	else
 		self.text:SetFont(Misc.font, Misc.cdsize, "OUTLINE")
 		self.text:SetShadowOffset(0, 0)
-		self.text:SetPoint("CENTER", 0, 0)
+		--self.text:SetPoint("CENTER", 0, 0)
 		if self.enabled then
 			Timer_ForceUpdate(self)
 		end
@@ -87,7 +92,7 @@ local function Timer_Create(self)
 	timer:SetScript("OnUpdate", Timer_OnUpdate)
 
 	local text = timer:CreateFontString(nil, "OVERLAY")
-	text:SetPoint("CENTER", 1, 0)
+	text:SetPoint("BOTTOM", 2, -3)
 	text:SetJustifyH("CENTER")
 	timer.text = text
 
@@ -98,9 +103,10 @@ local function Timer_Create(self)
 	return timer
 end
 
-local function Timer_Start(self, start, duration)
-	if self.noOCC then return end
-	if start > 0 and duration > 2 then
+local function Timer_Start(self, start, duration, charges, maxCharges)
+	local remainingCharges = charges or 0
+	
+	if start > 0 and duration > 2 and remainingCharges == 0 and (not self.noOCC) then
 		local timer = self.timer or Timer_Create(self)
 		timer.start = start
 		timer.duration = duration
@@ -115,4 +121,4 @@ local function Timer_Start(self, start, duration)
 	end
 end
 
-hooksecurefunc(getmetatable(ActionButton1Cooldown).__index, "SetCooldown", Timer_Start)
+hooksecurefunc(getmetatable(_G["ActionButton1Cooldown"]).__index, "SetCooldown", Timer_Start)
