@@ -13,4 +13,3 @@
 Settings.lua
 config.lua
 ShestakUI_Filger.lua
-Cooldowns.lua
