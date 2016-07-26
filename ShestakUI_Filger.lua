@@ -1,43 +1,45 @@
 local _, sakaras = ...
-local Misc = sakaras.FilgerSettings
-  Misc.back = Misc.Media.."HalBackground"
-	Misc.border = Misc.Media.."GlowTex"
+local Misc = sakaras.Misc
+--	Misc.back = Misc.Media.."back"
+	Misc.border = Misc.Media.."White"
 	Misc.barbg = Misc.Media.."Texture"
 
 local class = select(2, UnitClass("player"))
 local ClassColor = RAID_CLASS_COLORS[class]
 
 local colorTable = {
-	["DK"]		= {r = .77, g = .12, b = .23},
-	["DLY"]		= {r = 1, g = 0.49, b = .04},
-	["LR"]		= {r = .67, g = .83, b = .45},
-	["FS"]		= {r = .41, g = .8, b = .94},
-	["WS"]		= {r = 0, g = 1, b = .59},
-	["QS"]		= {r = .96, g = .55, b = .73},
-	["MS"]		= {r = 1, g = 1, b = 1},
-	["DZ"]		= {r = 1, g = .96, b = .41},
-	["SM"]		= {r = 0, g = .44, b = .87},
-	["SS"]		= {r = .58, g = .51, b = .79},
-	["ZS"]		= {r = .78, g = .61, b = .43},
+	["DK"]		= {r = .77, g = .12, b = .23},	-- DeathKnight	196,31,59
+	["DH"]		= {r = .09, g = .95, b = .14},	-- DemonHunter	23,242,36
+	["DLY"]		= {r = 1, g = 0.49, b = .04},	-- Druid		255,125,10
+	["LR"]		= {r = .58, g = .86, b = .49},	-- Hunter		148,219,125 {0.67, 0.83, 0.45}171,212,115
+	["FS"]		= {r = 0, g = .76, b = 1},		-- Mage			0,193,255 {0.41, 0.8, 0.94}105,204,240
+	["WS"]		= {r = 0, g = 1, b = .59},		-- Monk			0,255,150 {0.0, 0.98 , 0.58}0,250,148
+	["QS"]		= {r = 1, g = .22, b = .52},	-- Paladin		255,56,133 {0.96, 0.55, 0.73}245,140,186
+	["MS"]		= {r = .8, g = .87, b = .9},	-- Priest		204,222,230 1 1 1
+	["DZ"]		= {r = 1, g = .91, b = .2},	-- Rogue		255,232,51 {1.0, 0.96, 0.41}255,245,105
+	["SM"]		= {r = 0, g = .44, b = .87},	-- Shaman		0,112,222
+	["SS"]		= {r = .6, g = .47, b = .85},	-- Warlock		153,120,217 {0.58, 0.51, 0.79}148,130,201
+	["ZS"]		= {r = .9, g = .65, b = .45},	-- Warrior		230,166,115 {0.78, 0.61, 0.43}199,156,110
 	["Black"]	= {r = 0, g = 0, b = 0},
-	["Gray"]	= {r = .37, g = .3, b = .3},
+	["Gray"]	= {r = .37, g = .3, b = .3},	--				94,77,77
 	["OWN"]		= ClassColor,
 }
 
 local function SetTemplate(Parent, Size)
 	local F = CreateFrame("Frame", nil, Parent)
 	F:SetFrameLevel(3)
-	F:SetPoint("TOPLEFT", -1 * Misc.mult, 1 * Misc.mult)
-	F:SetPoint("BOTTOMRIGHT", 1 * Misc.mult, -1 * Misc.mult)
+	F:SetPoint("TOPLEFT", -Size * Misc.mult, Size * Misc.mult)
+	F:SetPoint("BOTTOMRIGHT", Size * Misc.mult, -Size * Misc.mult)
 	F:SetBackdrop({
-		bgFile = Misc.back, 
+	--	bgFile = Misc.back, 
 		edgeFile = Misc.border, 
-		insets = {left = 2 * Misc.mult, right = 2 * Misc.mult, top = 2 * Misc.mult, bottom = 2 * Misc.mult},
-		tile = false, tileSize = 0, 
-		edgeSize = 3 * Misc.mult,
+	--	insets = {left = 0 * Misc.mult, right = 0 * Misc.mult, top = 0 * Misc.mult, bottom = 0 * Misc.mult},
+	--	tile = false, tileSize = 0, 
+		edgeSize = 1 * Misc.mult,
 	})
-	F:SetBackdropColor(colorTable[Misc.modeback].r, colorTable[Misc.modeback].g, colorTable[Misc.modeback].b, .2)
+	--F:SetBackdropColor(backcolor.r, backcolor.g, backcolor.b, .5)
 	F:SetBackdropBorderColor(colorTable[Misc.modeborder].r, colorTable[Misc.modeborder].g, colorTable[Misc.modeborder].b, 1)
+
 	return F
 end
 
@@ -113,7 +115,8 @@ function Filger:DisplayActives()
 			SetTemplate(bar, 0)
 
 			if index == 1 then
-				bar:SetPoint(unpack(self.Position))
+				bar:SetAllPoints(self.movebar)
+				--bar:SetPoint(unpack(self.Position))
 			----- Next line ----
 			elseif self.NumPerLine and index % self.NumPerLine == 1 then
 				previous = self.bars[index - self.NumPerLine]
@@ -139,8 +142,8 @@ function Filger:DisplayActives()
 				bar.icon = _G[bar.icon:GetName()]
 			else
 				bar.icon = bar:CreateTexture("$parentIcon", "BORDER")
-				bar.icon:SetPoint("TOPLEFT", 2 * Misc.mult, -2 * Misc.mult)
-				bar.icon:SetPoint("BOTTOMRIGHT", -2 * Misc.mult, 2 * Misc.mult)
+				bar.icon:SetPoint("TOPLEFT", 1 * Misc.mult, -1 * Misc.mult)
+				bar.icon:SetPoint("BOTTOMRIGHT", -1 * Misc.mult, 1 * Misc.mult)
 				bar.icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
 			end
 
@@ -150,7 +153,7 @@ function Filger:DisplayActives()
 				else
 					bar.cooldown = CreateFrame("Cooldown", "$parentCD", bar, "CooldownFrameTemplate")
 					bar.cooldown:SetAllPoints(bar.icon)
-					bar.cooldown:SetReverse()
+					bar.cooldown:SetReverse(true) -- 反转
 					bar.cooldown:SetFrameLevel(2)
 				end
 
@@ -160,8 +163,8 @@ function Filger:DisplayActives()
 					bar.count = bar:CreateFontString("$parentCount", "OVERLAY")
 					bar.count:SetFont(Misc.font, Misc.numsize, "OUTLINE")
 					bar.count:SetShadowOffset(1 * Misc.mult, -1 * Misc.mult)
-					bar.count:SetPoint("BOTTOMRIGHT", 0, 2)
-					bar.count:SetJustifyH("CENTER")
+					bar.count:SetPoint("TOPRIGHT", 1, 0)
+					bar.count:SetJustifyH("RIGHT")
 				end
 			else
 				if bar.statusbar then
@@ -169,13 +172,13 @@ function Filger:DisplayActives()
 				else
 					bar.statusbar = CreateFrame("StatusBar", "$parentStatusBar", bar)
 					bar.statusbar:SetWidth(self.BarWidth * Misc.mult)
-					bar.statusbar:SetHeight(4 * Misc.mult)
+					bar.statusbar:SetHeight(7 * Misc.mult)
 					bar.statusbar:SetStatusBarTexture(Misc.barfg)			-- bar_FG
 					bar.statusbar:SetStatusBarColor(colorTable[Misc.modefg].r, colorTable[Misc.modefg].g, colorTable[Misc.modefg].b, 1)
 					if self.IconSide == "LEFT" then
-						bar.statusbar:SetPoint("BOTTOMLEFT", bar, "BOTTOMRIGHT", 3 * Misc.mult, 3 * Misc.mult)
+						bar.statusbar:SetPoint("BOTTOMLEFT", bar, "BOTTOMRIGHT", 3 * Misc.mult, 2 * Misc.mult)
 					elseif self.IconSide == "RIGHT" then
-						bar.statusbar:SetPoint("BOTTOMRIGHT", bar, "BOTTOMLEFT", -3 * Misc.mult, 3 * Misc.mult)
+						bar.statusbar:SetPoint("BOTTOMRIGHT", bar, "BOTTOMLEFT", -3 * Misc.mult, 2 * Misc.mult)
 					end
 				end
 				bar.statusbar:SetMinMaxValues(0, 1)
@@ -185,8 +188,8 @@ function Filger:DisplayActives()
 					bar.bg = _G[bar.bg:GetName()]
 				else
 					bar.bg = CreateFrame("Frame", "$parentBG", bar.statusbar)
-					bar.bg:SetPoint("TOPLEFT", -2 * Misc.mult, 2 * Misc.mult)
-					bar.bg:SetPoint("BOTTOMRIGHT", 2 * Misc.mult, -2 * Misc.mult)
+					bar.bg:SetPoint("TOPLEFT", -1 * Misc.mult, 1 * Misc.mult)
+					bar.bg:SetPoint("BOTTOMRIGHT", 1 * Misc.mult, -1 * Misc.mult)
 					bar.bg:SetFrameStrata("BACKGROUND")
 					SetTemplate(bar.bg, 0)
 				end
@@ -197,7 +200,7 @@ function Filger:DisplayActives()
 					bar.background = bar.statusbar:CreateTexture(nil, "BACKGROUND")
 					bar.background:SetAllPoints()
 					bar.background:SetTexture(Misc.barbg)		-- bar_BG
-					bar.background:SetVertexColor(0, 0, 0, .4)
+					bar.background:SetVertexColor(0, 0, 0, .25)
 				end
 
 				if bar.time then
@@ -216,15 +219,15 @@ function Filger:DisplayActives()
 					bar.count = bar:CreateFontString("$parentCount", "OVERLAY")
 					bar.count:SetFont(Misc.font, Misc.numsize, "OUTLINE")
 					bar.count:SetShadowOffset(1 * Misc.mult, -1 * Misc.mult)
-					bar.count:SetPoint("BOTTOMRIGHT", 1, 1)
-					bar.count:SetJustifyH("CENTER")
+					bar.count:SetPoint("TOPRIGHT", 1, 0)
+					bar.count:SetJustifyH("RIGHT")
 				end
 
 				if bar.spellname then
 					bar.spellname = _G[bar.spellname:GetName()]
 				else
 					bar.spellname = bar.statusbar:CreateFontString("$parentSpellName", "OVERLAY")
-					bar.spellname:SetFont(GameTooltipText:GetFont(), Misc.namesize, "OUTLINE")
+					bar.spellname:SetFont(GameFontNormal:GetFont(), Misc.namesize, "OUTLINE")
 					bar.spellname:SetShadowOffset(1 * Misc.mult, -1 * Misc.mult)
 					bar.spellname:SetPoint("LEFT", bar.statusbar, 2, 10)
 					bar.spellname:SetPoint("RIGHT", bar.time, "LEFT")
@@ -245,9 +248,11 @@ function Filger:DisplayActives()
 	end
 
 	local activeCount = 1
+	local limit = ((self.IconSize + self.Interval) * 9)/self.IconSize
 	for n in pairs(self.actives) do
 		self.sortedIndex[activeCount] = n
 		activeCount = activeCount + 1
+		if activeCount > limit then activeCount = limit end
 	end
 	table.sort(self.sortedIndex)
 
@@ -273,7 +278,7 @@ function Filger:DisplayActives()
 		end
 		if value.duration and value.duration > 0 then
 			if self.Mode == "ICON" then
-				CooldownFrame_SetTimer(bar.cooldown, value.start, value.duration, 1)
+				CooldownFrame_Set(bar.cooldown, value.start, value.duration, 1)
 				if value.data.filter == "CD" or value.data.filter == "ICD" then
 					bar.value = value
 					bar.activeIndex = activeIndex
@@ -319,7 +324,7 @@ function Filger:DisplayActives()
 end
 
 function Filger:OnEvent(event, unit)
-	if event == "SPELL_UPDATE_COOLDOWN" or event == "PLAYER_TARGET_CHANGED" or event == "PLAYER_FOCUS_CHANGED" or event == "PLAYER_ENTERING_WORLD" or event == "UNIT_AURA" and (unit == "target" or unit == "player" or unit == "pet" or unit == "focus") then
+	if event == "SPELL_UPDATE_COOLDOWN" or event == "PLAYER_TARGET_CHANGED" or event == "PLAYER_FOCUS_CHANGED" or event == "PLAYER_ENTERING_WORLD" or event == "UNIT_AURA" and (unit == "target" or unit == "player" or unit == "pet" or unit == "focus") or (event == "UNIT_SPELLCAST_SUCCEEDED" and unit == "player") then
 		local ptt = GetSpecialization()
 		local needUpdate = false
 		local id = self.Id
@@ -335,8 +340,10 @@ function Filger:OnEvent(event, unit)
 				spn, _, _ = GetSpellInfo(data.spellID)
 				name, _, icon, count, _, duration, expirationTime, caster, _, _, spid = Filger:UnitBuff(data.unitID, data.spellID, spn, data.absID)
 				if name and (data.caster ~= 1 and (caster == data.caster or data.caster == "all") or MyUnits[caster]) then
-					start = expirationTime - duration
-					found = true
+					if not data.count or count >= data.count then
+						start = expirationTime - duration
+						found = true
+					end
 				end
 			elseif data.filter == "DEBUFF" and (not data.spec or data.spec == ptt) then
 				local caster, spn, expirationTime
@@ -375,6 +382,11 @@ function Filger:OnEvent(event, unit)
 					local spn
 					spn, _, icon = GetSpellInfo(data.spellID)
 					name, _, _, _, _, _, _, _, _, _, spid = Filger:UnitDebuff("player", data.spellID, spn, data.absID)
+				elseif data.trigger == "NONE" and event == "UNIT_SPELLCAST_SUCCEEDED" then
+					if spellID == data.spellID then
+						name, _, icon = GetSpellInfo(data.spellID)
+						spid = data.spellID
+					end
 				end
 				if name then
 					if data.slotID then
@@ -392,6 +404,9 @@ function Filger:OnEvent(event, unit)
 				if not self.actives[i] then
 					self.actives[i] = {data = data, name = name, icon = icon, count = count, start = start, duration = duration, spid = spid}
 					needUpdate = true
+					if class == "DEATHKNIGHT" and self.actives[i].duration == 10 and data.filter == "CD" then
+						self.actives[i] = nil
+					end
 				else
 					if data.filter ~= "ICD" and (self.actives[i].count ~= count or self.actives[i].start ~= start or self.actives[i].duration ~= duration) then
 						self.actives[i].count = count
@@ -402,6 +417,7 @@ function Filger:OnEvent(event, unit)
 				end
 			else
 				if data.filter ~= "ICD" and self.actives and self.actives[i] then
+					if event == "UNIT_SPELLCAST_SUCCEEDED" then return end
 					self.actives[i] = nil
 					needUpdate = true
 				end
@@ -486,6 +502,30 @@ if Filger_Spells and Filger_Spells[class] then
 
 	for i = 1, #Filger_Spells[class], 1 do
 		local data = Filger_Spells[class][i]
+
+		local movebar = CreateFrame("Frame", "FilgerFrame"..i.."_"..data.Name.."Movebar", UIParent)
+		movebar:SetFrameStrata("TOOLTIP")
+		movebar:EnableMouse(true)
+		movebar:SetMovable(true)
+		movebar:SetClampedToScreen(true)
+		movebar:RegisterForDrag("LeftButton")
+		movebar:SetScript("OnDragStart", function(self) self:StartMoving() end)
+		movebar:SetScript("OnDragStop", function(self) self:StopMovingOrSizing() end)
+		movebar:SetBackdrop({  
+			bgFile = "Interface\\Buttons\\WHITE8x8", 
+			insets = {left = 1, right = 1, top = 1, bottom = 1},
+		})
+		movebar:SetBackdropColor(0, 1, 0, 0.6)
+		movebar:SetSize(data.IconSize or 37, data.IconSize or 37)
+		movebar.Position = data.Position or "CENTER"
+		movebar:SetPoint(unpack(data.Position))
+		movebar:Hide()
+
+		movebar.name = movebar:CreateFontString(nil, "OVERLAY")
+		movebar.name:SetFont(STANDARD_TEXT_FONT, 14, "OUTLINE")
+		movebar.name:SetPoint("CENTER")
+		movebar.name:SetText(data.Name)
+
 		local frame = CreateFrame("Frame", "FilgerFrame"..i.."_"..data.Name, UIParent)
 		frame.Id = i
 		frame.Name = data.Name
@@ -499,37 +539,72 @@ if Filger_Spells and Filger_Spells[class] then
 		frame.IconSize = data.IconSize or 37
 		frame.BarWidth = data.BarWidth or 186
 		frame.Position = data.Position or "CENTER"
-		frame:SetPoint(unpack(data.Position))
+		--frame:SetPoint(unpack(data.Position))
 
-		if Filger_Settings.config_mode then
-			frame.actives = {}
-			for j = 1, math.min(Filger_Settings.max_test_icon, #Filger_Spells[class][i]), 1 do
-				local data = Filger_Spells[class][i][j]
-				local name, icon
-				if data.spellID then
-					name, _, icon = GetSpellInfo(data.spellID)
-				elseif data.slotID then
-					local slotLink = GetInventoryItemLink("player", data.slotID)
-					if slotLink then
-						name, _, _, _, _, _, _, _, _, icon = GetItemInfo(slotLink)
-					end
-				end
-				frame.actives[j] = {data = data, name = name, icon = icon, count = 9, start = 0, duration = 0, spid = data.spellID or data.slotID}
+		for j = 1, #Filger_Spells[class][i], 1 do
+			local data = Filger_Spells[class][i][j]
+			if data.filter == "CD" then
+				frame:RegisterEvent("SPELL_UPDATE_COOLDOWN")
+				break
+			elseif data.trigger == "NONE" then
+				frame:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
+				break
 			end
-			Filger.DisplayActives(frame)
-		else
-			for j = 1, #Filger_Spells[class][i], 1 do
-				local data = Filger_Spells[class][i][j]
-				if data.filter == "CD" then
-					frame:RegisterEvent("SPELL_UPDATE_COOLDOWN")
-					break
-				end
-			end
-			frame:RegisterEvent("UNIT_AURA")
-			frame:RegisterEvent("PLAYER_FOCUS_CHANGED")
-			frame:RegisterEvent("PLAYER_TARGET_CHANGED")
-			frame:RegisterEvent("PLAYER_ENTERING_WORLD")
-			frame:SetScript("OnEvent", Filger.OnEvent)
 		end
+		frame:RegisterEvent("UNIT_AURA")
+		frame:RegisterEvent("PLAYER_FOCUS_CHANGED")
+		frame:RegisterEvent("PLAYER_TARGET_CHANGED")
+		frame:RegisterEvent("PLAYER_ENTERING_WORLD")
+		frame:SetScript("OnEvent", Filger.OnEvent)
+		frame.movebar = movebar
 	end
 end
+
+-- Test function
+local InitTest = function(msg)
+	msg = string.lower(msg)
+	if msg == "test" then
+		if UnitAffectingCombat("player") then print("|cffffff00"..ERR_NOT_IN_COMBAT.."|r") return end
+		testMode = not testMode
+		for i = 1, #Filger_Spells[class], 1 do	
+			local data = Filger_Spells[class][i]
+			local frame = _G["FilgerFrame"..i.."_"..data.Name]
+			frame.actives = {}
+			if testMode then
+				for j = 1, math.min(Misc.maxTestIcon, #Filger_Spells[class][i]), 1 do
+					local data = Filger_Spells[class][i][j]
+					local name, icon
+					if data.spellID then
+						name, _, icon = GetSpellInfo(data.spellID)
+					elseif data.slotID then
+						local slotLink = GetInventoryItemLink("player", data.slotID)
+						if slotLink then
+							name, _, _, _, _, _, _, _, _, icon = GetItemInfo(slotLink)
+						end
+					end
+					frame.actives[j] = {data = data, name = name, icon = icon, count = 9, start = 0, duration = 0, spid = data.spellID or data.slotID}
+				end
+				frame:SetScript("OnEvent", nil)
+				frame.movebar:Show()
+			else
+				frame:SetScript("OnEvent", Filger.OnEvent)
+				frame.movebar:Hide()
+			end
+			Filger.DisplayActives(frame)
+		end
+	elseif msg == "reset" then
+		for i = 1, #Filger_Spells[class], 1 do
+			local data = Filger_Spells[class][i]
+			local frame = _G["FilgerFrame"..i.."_"..data.Name]
+			frame.movebar:ClearAllPoints()
+			frame.movebar:SetPoint(unpack(data.Position))
+		end
+	else
+		print("|cffffff00/Filger test   解锁/锁定|r")
+		print("|cffffff00/Filger reset  重置|r")
+	end
+end
+
+SlashCmdList.FilgerTest = InitTest
+SLASH_FilgerTest1 = "/sf"
+SLASH_FilgerTest2 = "/filger"
