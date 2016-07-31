@@ -294,20 +294,30 @@ Filger_Spells = {
 			IconSize = Misc.IconSize,
 			Position = {unpack(FilgerPositions.player_buff_icon)},
 
+			-- Metamorphosis
+			{spellID = 187827, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Empower Wards
+			{spellID = 218256, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Darkness
+			{spellID = 196718, unitID = "player", caster = "player", filter = "BUFF"},
+			-- {spellID = 209426, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Demon Spikes
+			-- {spellID = 203819, unitID = "player", caster = "player", filter = "BUFF"},
+			{spellID = 203720, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Netherwalk (Talent)
+			{spellID = 196555, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Nether Bond (Talent)
+			{spellID = 207810, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Feast of Souls
 			{spellID = 207693, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Immolation Aura
 			{spellID = 178740, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Gluttony
 			{spellID = 227330, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Immolation Aura
-			{spellID = 178740, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Nemesis
 			{spellID = 208608, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Soul Barrier
 			{spellID = 227225, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Soul Fragments
-			{spellID = 203981, unitID = "player", caster = "player", filter = "BUFF"},
 		},
 		{
 			Name = "P_PROC_ICON",
@@ -319,24 +329,16 @@ Filger_Spells = {
 			Position = {unpack(FilgerPositions.player_proc_icon)},
 
 			-- Buffs
-			-- Empower Wards
-			{spellID = 218256, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Darkness
-			{spellID = 209426, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Demon Metamorphosis
-			{spellID = 187827, unitID = "player", caster = "player", filter = "BUFF"},
+			-- Soul Fragments
+			{spellID = 203981, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Pain Bringer
 			{spellID = 212988, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Spectral Sight
 			{spellID = 188501, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Demon Spikes
-			{spellID = 203819, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Blur
 			{spellID = 212800, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Chaos Blades
 			{spellID = 211048, unitID = "player", caster = "player", filter = "BUFF"},
-			-- Nether Walk
-			{spellID = 196555, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Prepared
 			{spellID = 203650, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Momentum
@@ -450,6 +452,8 @@ Filger_Spells = {
 			IconSize = Misc.IconSize,
 			Position = {unpack(FilgerPositions.target_debuff_icon)},
 
+			-- Darkness
+			{spellID = 209426, unitID = "target", caster = "player", filter = "BUFF"},
 			-- Brand of the Hunt
 			{spellID = 218640, unitID = "target", caster = "player", filter = "DEBUFF"},
 			-- Vengeful Retreat
@@ -495,9 +499,8 @@ Filger_Spells = {
 			BarWidth = Misc.barw,
 			Position = {unpack(FilgerPositions.target_bar)},
 
-			-- Brand of the Hunt
-			{spellID = 218640, unitID = "focus", caster = "player", filter = "DEBUFF"},
-
+			-- Darkness
+			{spellID = 209426, unitID = "target", caster = "player", filter = "BUFF"},
 		},--]]
 		{
 			Name = "COOLDOWN",
@@ -511,18 +514,70 @@ Filger_Spells = {
 			Position = {unpack(FilgerPositions.cooldown)},
 
 			-- Self
-			-- Demon Metamorphosis
+			-- Consume Magic
+			{spellID = 183752, filter = "CD"},
+			-- Fel Rush
+			{spellID = 195072, filter = "CD", absID = true},
+			-- Infernal Strike
+			{spellID = 189110, filter = "CD"},
+			-- Torment
+			{spellID = 185245, filter = "CD"},
+			-- Demon Spikes
+			{spellID = 203720, filter = "CD"},
+			-- Immolation Aura
+			{spellID = 178740, filter = "CD"},
+			-- Felblade (Talent)
+			{spellID = 213241, filter = "CD"},
+			-- Throw Glaive
+			-- {spellID = 185123, filter = "CD"},
+			-- Soul Barrier (Talent)
+			{spellID = 227225, filter = "CD"},
+			-- Blade Dance
+			{spellID = 188499, filter = "CD"},
+			-- Fel Barrage (Talent)
+			{spellID = 211053, filter = "CD"},
+			-- Vengeful Retreat
+			{spellID = 198793, filter = "CD", absID = true},
+			-- Soul Carver (Artifact)
+			{spellID = 207407, filter = "CD"},
+			-- Sigil of Silence
+			{spellID = 202137, filter = "CD"},
+			-- Sigil of Misery
+			{spellID = 207684, filter = "CD"},
+			-- Empower Wards
+			{spellID = 218256, filter = "CD"},
+			-- Spectral Sight
+			{spellID = 188501, filter = "CD"},
+			-- Fiery Brand
+			{spellID = 204021, filter = "CD"},
+			-- Eye Beam
+			{spellID = 198013, filter = "CD", absID = true},
+			-- Chaos Nova
+			{spellID = 179057, filter = "CD", absID = true},
+			-- Sigil of Chains
+			{spellID = 202138, filter = "CD"},
+			-- Fel Eruption (Talent)
+			{spellID = 211881, filter = "CD"},
+			-- Fel Devastation (Talent)
+			{spellID = 212084, filter = "CD"},
+			-- Nether Bond (Talent)
+			{spellID = 207810, filter = "CD"},
+			-- Fury of the Illidari (Artifact)
+			{spellID = 201467, filter = "CD"},
+			-- Netherwalk (Talent)
+			{spellID = 196555, filter = "CD"},
+			-- Chaos Blades (Talent)
+			{spellID = 211048, filter = "CD"},
+			-- Nemesis (Talent)
+			{spellID = 206491, filter = "CD"},
+			-- Metamorphosis
 			{spellID = 187827, filter = "CD"},
 			-- Darkness
 			{spellID = 196718, filter = "CD"},
-			-- Sigil of Chains
-			{spellID = 202138, filter = "CD"},
-			-- Soul Carver
-			{spellID = 207407, filter = "CD"},
 
 			-- Racial
 			-- Arcane Torrent (Blood Elf)
-			{spellID = 69179, filter = "CD"},
+			{spellID = 202719, filter = "CD"},
 			-- Shadowmeld (Night Elf)
 			{spellID = 58984, filter = "CD"},
 
@@ -3569,7 +3624,8 @@ Filger_Spells = {
 			{spellID = 47476, unitID = "player", caster = "all", filter = "DEBUFF"},
 
 			-- Demon Hunter
-			-- 
+			-- Imprison
+			{spellID = 217832, unitID = "player", caster = "all", filter = "DEBUFF"},
 
 			-- Druid
 			-- Cyclone
@@ -3756,6 +3812,8 @@ Filger_Spells = {
 			-- Other
 			-- Rocket Fuel Leak 火箭鞋漏油
 			{spellID = 94794, unitID = "player", caster = "player", filter = "DEBUFF"},
+			-- Uncontained Fel (Demon Hunter Last Resort Talent)
+			{spellID = 209261, unitID = "player", caster = "player", filter = "DEBUFF"},
 		
 
 			-------------------------
@@ -4504,7 +4562,19 @@ Filger_Spells = {
 			{spellID = 47476, unitID = "target", caster = "all", filter = "DEBUFF"},
 
 			-- Demon Hunter
+			-- Metamorphosis
+			{spellID = 162264, unitID = "target", caster = "all", filter = "BUFF"},
+			-- Spectral Sight
+			{spellID = 188501, unitID = "target", caster = "all", filter = "BUFF"},
+			-- Netherwalk
+			{spellID = 196555, unitID = "target", caster = "all", filter = "BUFF"},
+			-- Nether Bond
+			{spellID = 207810, unitID = "target", caster = "all", filter = "BUFF"},
+			-- Soul Barrier
+			{spellID = 227225, unitID = "target", caster = "all", filter = "BUFF"},
 			-- Debuffs
+			-- Imprison
+			{spellID = 217832, unitID = "target", caster = "all", filter = "DEBUFF"},
 
 			-- Druid
 			-- Barkskin
