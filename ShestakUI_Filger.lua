@@ -3,6 +3,7 @@ local Misc = ns.Misc
 --	Misc.back = Misc.Media.."back"
 	Misc.border = Misc.Media.."White"
 	Misc.barbg = Misc.Media.."Texture"
+local LibAura = LibStub:GetLibrary("LibAuraUtil-1.0")
 
 local class = select(2, UnitClass("player"))
 local ClassColor = RAID_CLASS_COLORS[class]
@@ -60,7 +61,7 @@ function Filger:UnitBuff(unitID, inSpellID, spn, absID)
 			end
 		end
 	else
-		return UnitBuff(unitID, spn)
+		return LibAura.UnitBuff(spn,unitID)
 	end
 	return nil
 end
@@ -75,7 +76,7 @@ function Filger:UnitDebuff(unitID, inSpellID, spn, absID)
 			end
 		end
 	else
-		return UnitDebuff(unitID, spn)
+		return LibAura.UnitDebuff(spn,unitID)
 	end
 	return nil
 end

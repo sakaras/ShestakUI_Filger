@@ -8,6 +8,9 @@
 ## Thanks: Erratic, Wetxius
 ## Website: http://shestak.org
 
+Libs\LibStub\LibStub.lua
+Libs\LibAuraUtil-1.0\LibAuraUtil-1.0.xml
+
 Settings.lua
 Spells.lua
 ShestakUI_Filger.lua
