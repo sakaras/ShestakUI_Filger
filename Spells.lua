@@ -1537,7 +1537,7 @@ Filger_Spells = {
 			-- Thunder Focus Tea
 			{spellID = 116680, unitID = "player", caster = "player", filter = "BUFF"},
 			-- Tigereye Brew
-			{spellID = 116740, unitID = "player", caster = "player", filter = "BUFF", absID = true},
+			--{spellID = 116740, unitID = "player", caster = "player", filter = "BUFF", absID = true},
 			-- Touch of Karma
 			{spellID = 125174, unitID = "player", caster = "player", filter = "BUFF"},
 			--轻度醉拳
@@ -3584,7 +3584,7 @@ Filger_Spells = {
 			-- Grounding Totem
 			{spellID = 8178, unitID = "player", caster = "all", filter = "BUFF"},
 			-- Mass Spell Reflection
-			{spellID = 114028, unitID = "player", caster = "all", filter = "BUFF"},
+			--{spellID = 114028, unitID = "player", caster = "all", filter = "BUFF"},
 			-- Tiger's Lust
 			{spellID = 116841, unitID = "player", caster = "all", filter = "BUFF"},
 			-- Body and Soul
@@ -3675,7 +3675,7 @@ Filger_Spells = {
 
 			-- Mage
 			-- Chilled
-			{spellID = 7321, unitID = "player", caster = "all", filter = "DEBUFF"},
+			--{spellID = 7321, unitID = "player", caster = "all", filter = "DEBUFF"},
 			-- Cone of Cold
 			{spellID = 120, unitID = "player", caster = "all", filter = "DEBUFF"},
 			-- Dragon's Breath
@@ -3795,7 +3795,7 @@ Filger_Spells = {
 			-- Shockwave
 			{spellID = 132168, unitID = "player", caster = "all", filter = "DEBUFF"},
 			-- Staggering Shout
-			{spellID = 107566, unitID = "player", caster = "all", filter = "DEBUFF"},
+			--{spellID = 107566, unitID = "player", caster = "all", filter = "DEBUFF"},
 			-- Storm Bolt
 			{spellID = 132169, unitID = "player", caster = "all", filter = "DEBUFF", absID = true},
 			-- Warbringer
@@ -4546,7 +4546,7 @@ Filger_Spells = {
 			-- Desecrated Ground
 			{spellID = 115018, unitID = "target", caster = "all", filter = "BUFF"},
 			-- Lichborne
-			{spellID = 49039, unitID = "target", caster = "all", filter = "BUFF"},
+			--{spellID = 49039, unitID = "target", caster = "all", filter = "BUFF"},
 			-- Icebound Fortitude
 			{spellID = 48792, unitID = "target", caster = "all", filter = "BUFF"},
 			-- Pillar of Frost
@@ -4624,7 +4624,7 @@ Filger_Spells = {
 
 			-- Mage
 			-- Alter Time
-			{spellID = 110909, unitID = "target", caster = "all", filter = "BUFF"},
+			--{spellID = 110909, unitID = "target", caster = "all", filter = "BUFF"},
 			-- Evanesce
 			{spellID = 157913, unitID = "target", caster = "all", filter = "BUFF"},
 			-- Evocation
@@ -4634,7 +4634,7 @@ Filger_Spells = {
 			-- Invisibility
 			{spellID = 66, unitID = "target", caster = "all", filter = "BUFF"},
 			-- Temporal Shield
-			{spellID = 115610, unitID = "target", caster = "all", filter = "BUFF"},
+			--{spellID = 115610, unitID = "target", caster = "all", filter = "BUFF"},
 			-- Debuffs
 			-- Cauterize
 			{spellID = 87023, unitID = "target", caster = "target", filter = "DEBUFF"},
@@ -4785,7 +4785,7 @@ Filger_Spells = {
 			-- Last Stand
 			{spellID = 12975, unitID = "target", caster = "all", filter = "BUFF"},
 			-- Mass Spell Reflection
-			{spellID = 114028, unitID = "target", caster = "all", filter = "BUFF"},
+			--{spellID = 114028, unitID = "target", caster = "all", filter = "BUFF"},
 			-- Shield Wall
 			{spellID = 871, unitID = "target", caster = "all", filter = "BUFF"},
 			-- Spell Reflection
